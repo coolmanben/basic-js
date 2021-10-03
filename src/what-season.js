@@ -13,6 +13,13 @@ import { NotImplementedError } from '../extensions/index.js';
  */
 export default function getSeason( date ) {
   if (date == undefined ){ return 'Unable to determine the time of year!' }
+  try {
+    date.toUTCString();
+  } 
+  catch {
+    throw new Error('Invalid date!')  
+  }
+  
   if (typeof(date) !== 'object') { Error(`Invalid date!`); }
   if (Object.prototype.toString.call(date) === "[object Date]" ){
     let season = [ 'winter', 'winter', 'spring', 'spring', 'spring', 'summer', 'summer', 'summer', 'autumn', 'autumn', 'autumn', 'winter' ];
