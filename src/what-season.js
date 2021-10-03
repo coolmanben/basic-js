@@ -12,12 +12,12 @@ import { NotImplementedError } from '../extensions/index.js';
  * 
  */
 export default function getSeason( date ) {
-  if (date == ''){ return 'Unable to determine the time of year!' }
+  if (date == undefined ){ return 'Unable to determine the time of year!' }
+  if (typeof(date) !== 'object'){ return `Invalid date!`; }
   if (Object.prototype.toString.call(date) === "[object Date]" ){
-    let season = ['', 'winter', 'winter', 'spring', 'spring', 'spring', 'summer', 'summer', 'summer', 'autumn', 'autumn', 'autumn', 'winter' ];
+    let season = [ 'winter', 'winter', 'spring', 'spring', 'spring', 'summer', 'summer', 'summer', 'autumn', 'autumn', 'autumn', 'winter' ];
     let month = date.getMonth();
-    console.log(month)
     return season[month];
   }
-  new Error(`Invalid date!`);
+  return `Invalid date!`;
 }
