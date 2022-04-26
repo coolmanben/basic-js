@@ -24,6 +24,10 @@ function repeater(str, options ) {
   if ( repeatTimes  == undefined ) { repeatTimes = 1 };
   let additionRepeatTimes = options.additionRepeatTimes;
   if ( additionRepeatTimes  == undefined ) { additionRepeatTimes = 1 };
+  let addition = options.addition;
+  if ( addition === null ) { addition = 'null' };
+  let inputSrt = str;
+  if ( str === null ) { inputSrt = 'null' };
 
   function getRepetter( str , count, separete ){
       let resArray = [];
@@ -32,8 +36,8 @@ function repeater(str, options ) {
       }
       return resArray.join(separete);
     } 
-  let attitStr = getRepetter( options.addition , additionRepeatTimes , separatorAddition) 
-  return getRepetter( str + attitStr, repeatTimes , separator )
+  let attitStr = getRepetter( addition , additionRepeatTimes , separatorAddition) 
+  return getRepetter( inputSrt + attitStr, repeatTimes , separator )
   }
 
   module.exports = {

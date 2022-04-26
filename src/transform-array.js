@@ -18,20 +18,18 @@ function transform( arr  ) {
     throw new Error(`'arr' parameter must be an instance of the Array!`)  
   }
   let resArray = [];
-  arr.forEach(function(entry, index, array) {
+  arr.forEach( function(entry, index, array) {
     let addEl = true;
-    console.log( entry )
-// исключает следующий за ней элемент исходного массива из преобразованного массива.
-if ( entry == `--discard-next`) { arr.splice( index - 1, 1); addEl = false };
-//исключает предшествующий ей элемент исходного массива из преобразованного массива.
+    // исключает следующий за ней элемент исходного массива из преобразованного массива.
+    if ( entry == `--discard-next`) { arr.splice( index - 1, 1); addEl = false };
+    //исключает предшествующий ей элемент исходного массива из преобразованного массива.
     if ( entry == `--discard-prev`) {  resArray.splice( index - 1 , 1); addEl = false; };
-// удваивает следующий за ней элемент исходного массива в преобразованном массиве.
+    // удваивает следующий за ней элемент исходного массива в преобразованном массиве.
     if ( entry == `--double-next`) { if ( arr.lenght > index) {resArray.push( arr[ index + 1 ] ) ; addEl = false } else  {addEl = false}};
-//удваивает предшествующий ей элемент исходного массива в преобразованном массиве.
+    //удваивает предшествующий ей элемент исходного массива в преобразованном массиве.
     if ( entry == `--double-prev`) { if( index > 1) {resArray.push( resArray[ index - 1] ) ; addEl = false } else  {addEl = false} };
     if ( addEl) { resArray.push(entry) };
-  }
-  );
+  });
   return resArray;
 }
 
