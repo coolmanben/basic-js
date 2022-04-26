@@ -11,8 +11,7 @@ import { NotImplementedError } from '../extensions/index.js';
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  * 
  */
-
-function getSeason( date ) {
+export default function getSeason( date ) {
   if (date == undefined ){ return 'Unable to determine the time of year!' }
   try {
     date.toUTCString();
@@ -29,7 +28,3 @@ function getSeason( date ) {
   }
   return Error(`Invalid date!`);
 }
-
-module.exports = {
-  getSeason
-};

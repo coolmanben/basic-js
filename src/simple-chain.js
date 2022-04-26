@@ -1,10 +1,10 @@
-const { NotImplementedError } = require('../extensions/index.js');
+import { NotImplementedError } from '../extensions/index.js';
 
 /**
  * Implement chainMaker object according to task description
  * 
  */
-const chainMaker = {
+export default {
   getLength() {
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
@@ -25,8 +25,4 @@ const chainMaker = {
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   }
-};
-
-module.exports = {
-  chainMaker
 };

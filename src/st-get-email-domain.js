@@ -10,15 +10,6 @@ import { NotImplementedError } from '../extensions/index.js';
  * For the input 'prettyandsimple@example.com', the output should be 'example.com'
  *
  */
-/*
 export default function getEmailDomain(email ) {
   return email.split('@').pop();
 }
-*/
-function getEmailDomain( email ) {
-  return email.split('@').pop();
-}
-
-module.exports = {
-  getEmailDomain
-};

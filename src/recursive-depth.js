@@ -12,24 +12,20 @@ import { NotImplementedError } from '../extensions/index.js';
  * depthCalc.calculateDepth([[[]]]) => 3
  *
  */
-
-class DepthCalculator {
+ export default class DepthCalculator { 
+  
   calculateDepth( arr ) {
-    let maxCount = 1;
-    arr.forEach(function(entry) {
-      let count = 1;
-      if ( typeof entry == 'object') {
-        const newdepthCalc = new DepthCalculator();
-        count = count + newdepthCalc.calculateDepth( entry );
-      }
-      if ( count > maxCount){
-        maxCount = count; 
-      }
-    });
-  return maxCount;
+      let maxCount = 1;
+      arr.forEach(function(entry) {
+        let count = 1;
+        if ( typeof entry == 'object') {
+          const newdepthCalc = new DepthCalculator();
+          count = count + newdepthCalc.calculateDepth( entry );
+        }
+        if ( count > maxCount){
+          maxCount = count; 
+        }
+      });
+    return maxCount;
   }
-}
-
-module.exports = {
-  DepthCalculator
-};
+} 

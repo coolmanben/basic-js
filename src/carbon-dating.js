@@ -17,8 +17,7 @@ const HALF_LIFE_PERIOD = 5730;
  * dateSample('WOOT!') => false
  *
  */
-
-function dateSample( sampleActivity ) {
+export default function dateSample(sampleActivity) {
   if (( typeof(sampleActivity) == 'string') && (sampleActivity !== '') && (sampleActivity !== ' ') && ( 1 <= sampleActivity  ) && ( sampleActivity <= MODERN_ACTIVITY ) ) {
       let k = 0.693 / HALF_LIFE_PERIOD;
       let res = (Math.log( MODERN_ACTIVITY/ sampleActivity )/ (Math.LN2 / HALF_LIFE_PERIOD));
@@ -28,7 +27,3 @@ function dateSample( sampleActivity ) {
     return false ;
   }
 }
-
-module.exports = {
-  dateSample
-};

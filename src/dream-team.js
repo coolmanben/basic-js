@@ -13,8 +13,7 @@ import { NotImplementedError } from '../extensions/index.js';
  * createDreamTeam(['Olivia', 1111, 'Lily', 'Oscar', true, null]) => 'LOO'
  *
  */
-
-function createDreamTeam( members ) {
+export default function createDreamTeam( members ) {
   if (Array.isArray(members )){
     let resCommandName = []
   for (let i = 0; i < members.length; i++) {
@@ -28,7 +27,3 @@ function createDreamTeam( members ) {
   }
   return false
 }
-
-module.exports = {
-  createDreamTeam
-};
