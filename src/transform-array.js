@@ -13,7 +13,8 @@ import { NotImplementedError } from '../extensions/index.js';
  * transform([1, 2, 3, '--discard-prev', 4, 5]) => [1, 2, 4, 5]
  * 
  */
-export default function transform( arr  ) {
+
+function transform( arr ) {
   if ( !Array.isArray(arr) ) { 
     throw new Error(`'arr' parameter must be an instance of the Array!`)  
   }
@@ -34,3 +35,7 @@ if ( entry == `--discard-next`) { arr.splice( index - 1, 1); addEl = false };
   );
   return resArray;
 }
+
+module.exports = {
+  transform
+};

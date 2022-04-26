@@ -19,7 +19,7 @@ import { NotImplementedError } from '../extensions/index.js';
  * reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => '!NWAD TA KCATTA'
  * 
  */
-export default class VigenereCipheringMachine {
+ class VigenereCipheringMachine {
   encrypt() {
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
@@ -29,3 +29,7 @@ export default class VigenereCipheringMachine {
     // remove line with error and write your code here
   }
 }
+
+module.exports = {
+  VigenereCipheringMachine
+};
