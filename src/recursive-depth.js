@@ -20,8 +20,10 @@ class DepthCalculator {
       arr.forEach(function(entry) {
         let count = 1;
         if ( typeof entry == 'object') {
-          const newdepthCalc = new DepthCalculator();
-          count = count + newdepthCalc.calculateDepth( entry );
+          if ( Array.isArray( entry ) ) {
+            const newdepthCalc = new DepthCalculator();
+            count = count + newdepthCalc.calculateDepth( entry );
+          }
         }
         if ( count > maxCount){
           maxCount = count; 
