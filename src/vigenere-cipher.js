@@ -20,12 +20,12 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 class VigenereCipheringMachine {
-  constructor( typeCript ) {
+  constructor( typeCript = false) {
     this.typeCript = typeCript;
   }
   
-  encrypt( message , key ) {
-    if ( (arguments.length ) < 2 || ( message == undefined  ))  {
+  crupt (message , key , type) {
+    if ( !message || !key )  {
       throw new Error (`Incorrect arguments!`)
     }
     let inputMessage  = message.toUpperCase();
@@ -35,12 +35,15 @@ class VigenereCipheringMachine {
       let inputLetter       = inputMessage[i];
       let letterCharCode    = inputLetter.charCodeAt();
       let keyLetter         = inoutKey[ j % inoutKey.length ];
-
-      if( ( letterCharCode >= 65 && letterCharCode <= 90)){
-        
-        let upperLetter = (( letterCharCode - 65) + (keyLetter.charCodeAt() - 65)) % 26;
-        
-        outputMessage += String.fromCharCode( upperLetter + 65 );
+      if( ( letterCharCode >= 65 && letterCharCode <= 90)){   
+        let upperLetter = 0
+        if ( type) {
+          upperLetter = ( ( letterCharCode - 65 ) + (keyLetter.charCodeAt() - 65) ) % 26 + 65;
+        }
+        else {
+          upperLetter = ( ( letterCharCode ) - ( keyLetter.charCodeAt() ) + 26 ) % 26 + 65;  
+        }
+        outputMessage += String.fromCharCode( upperLetter );
         j++;
       }
       else{
@@ -48,46 +51,19 @@ class VigenereCipheringMachine {
       }
     }
     if (this.typeCript == true) {
-      return outputMessage.split("").reverse().join("");
+      return outputMessage.split('').reverse().join('');
     }
     else{
       return outputMessage;  
     }
   }
 
+  encrypt( message , key ) {
+    return this.crupt(message , key , true)   
+  }
+
   decrypt( message , key ) {
-    if ( (arguments.length ) < 2 || ( message == undefined  ))  {
-      throw new Error (`Incorrect arguments!`)
-    }
-
-    let inputMessage  = message.toUpperCase();
-    let inoutKey      = key.toUpperCase();
-    let outputMessage = "";
-
-    for(let i = 0, j = 0; i < inputMessage.length; i++){
-      let inputLetter       = inputMessage[i];
-      let letterCharCode    = inputLetter.charCodeAt();
-      let keyLetter         = inoutKey[ j % inoutKey.length ];
-
-      if( ( letterCharCode >= 65 && letterCharCode <= 90)){
-        let upperLetter = ( ( letterCharCode - 65 ) - ( keyLetter.charCodeAt() - 65 ) ) % 26;
-        if ( letterCharCode < keyLetter.charCodeAt()  ) {
-          upperLetter   = ( ( letterCharCode - 65) - ( keyLetter.charCodeAt() - 65 ) + 26 ) % 26;
-        }
-        outputMessage += String.fromCharCode( upperLetter + 65 );
-        j++;
-      }
-      else{
-        outputMessage += inputLetter;
-      }
-    }
-
-    if (this.typeCript == true) {
-      return outputMessage.split("").reverse().join("");
-    }
-    else {
-      return outputMessage;  
-    }
+    return this.crupt(message , key , false)   
   }
 }
 
