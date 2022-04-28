@@ -20,13 +20,74 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 class VigenereCipheringMachine {
-  encrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor( typeCript ) {
+    this.typeCript = typeCript;
   }
-  decrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  
+  encrypt( message , key ) {
+    if ( (arguments.length ) < 2 || ( message == undefined  ))  {
+      throw new Error (`Incorrect arguments!`)
+    }
+    let inputMessage  = message.toUpperCase();
+    let inoutKey      = key.toUpperCase();
+    let outputMessage = "";
+    for(let i = 0, j = 0; i < inputMessage.length; i++) {
+      let inputLetter       = inputMessage[i];
+      let letterCharCode    = inputLetter.charCodeAt();
+      let keyLetter         = inoutKey[ j % inoutKey.length ];
+
+      if( ( letterCharCode >= 65 && letterCharCode <= 90)){
+        
+        let upperLetter = (( letterCharCode - 65) + (keyLetter.charCodeAt() - 65)) % 26;
+        
+        outputMessage += String.fromCharCode( upperLetter + 65 );
+        j++;
+      }
+      else{
+        outputMessage += inputLetter;
+      }
+    }
+    if (this.typeCript == true) {
+      return outputMessage.split("").reverse().join("");
+    }
+    else{
+      return outputMessage;  
+    }
+  }
+
+  decrypt( message , key ) {
+    if ( (arguments.length ) < 2 || ( message == undefined  ))  {
+      throw new Error (`Incorrect arguments!`)
+    }
+
+    let inputMessage  = message.toUpperCase();
+    let inoutKey      = key.toUpperCase();
+    let outputMessage = "";
+
+    for(let i = 0, j = 0; i < inputMessage.length; i++){
+      let inputLetter       = inputMessage[i];
+      let letterCharCode    = inputLetter.charCodeAt();
+      let keyLetter         = inoutKey[ j % inoutKey.length ];
+
+      if( ( letterCharCode >= 65 && letterCharCode <= 90)){
+        let upperLetter = ( ( letterCharCode - 65 ) - ( keyLetter.charCodeAt() - 65 ) ) % 26;
+        if ( letterCharCode < keyLetter.charCodeAt()  ) {
+          upperLetter   = ( ( letterCharCode - 65) - ( keyLetter.charCodeAt() - 65 ) + 26 ) % 26;
+        }
+        outputMessage += String.fromCharCode( upperLetter + 65 );
+        j++;
+      }
+      else{
+        outputMessage += inputLetter;
+      }
+    }
+
+    if (this.typeCript == true) {
+      return outputMessage.split("").reverse().join("");
+    }
+    else {
+      return outputMessage;  
+    }
   }
 }
 
