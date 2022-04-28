@@ -21,14 +21,13 @@ function getSeason( date ) {
   }
   
   if (typeof(date) !== 'object') { Error(`Invalid date!`); }
-  if (Object.prototype.toString.call(date) === "[object Date]" ){
+  if ( Object.prototype.toString.call(date) === "[object Date]" ) {
     let season = [ 'winter', 'winter', 'spring', 'spring', 'spring', 'summer', 'summer', 'summer', 'autumn', 'autumn', 'autumn', 'winter' ];
     let month = date.getMonth();
     return season[month];
   }
   return Error(`Invalid date!`);
 }
-
 
 module.exports = {
   getSeason
