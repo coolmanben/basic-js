@@ -53,7 +53,7 @@ function transform( arr  ) {
       else  {
         addEl = false
       };
-      };
+    };
     //удваивает предшествующий ей элемент исходного массива в преобразованном массиве.
     if ( entry == `--double-prev`) { 
       if ( index > 1) {
@@ -72,7 +72,6 @@ function transform( arr  ) {
   return resArray;
 
 }
-
 
 module.exports = {
   transform

@@ -36,7 +36,7 @@ class VigenereCipheringMachine {
       let letterCharCode    = inputLetter.charCodeAt();
       let keyLetter         = inoutKey[ j % inoutKey.length ];
       if( ( letterCharCode >= 65 && letterCharCode <= 90)){   
-        let upperLetter = 0
+        let upperLetter = ''
         if ( type) {
           upperLetter = ( ( letterCharCode - 65 ) + (keyLetter.charCodeAt() - 65) ) % 26 + 65;
         }
